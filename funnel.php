@@ -33,8 +33,6 @@ $password = 'PASSWORD HERE';
 $whereToSaveAttachments = "/var/www/html/attachments/";
 
 
-//require_once('mparser/MimeMailParser.class.php');
-
 /* try to connect */
 $inbox = imap_open($hostname,$username,$password) or die('Cannot connect to mail server: ' . imap_last_error());
 
@@ -94,7 +92,7 @@ if($emails) {
     
     $output.= '</div>';
     
-    /* output the email body */
+    	/* output the email body */
    	// $output.= '<div class="body">'.strip_tags($message).'</div>';
   }
   
@@ -106,6 +104,8 @@ if($emails) {
 imap_close($inbox);
 
 
+//this function will search the message body for attachments in the raw content
+//it takes a imap connection and a message number
 function extract_attachments($connection, $message_number) {
    
     $attachments = array();
@@ -113,10 +113,11 @@ function extract_attachments($connection, $message_number) {
    
     if(isset($structure->parts) && count($structure->parts)) {
    
+   	//loop through each part of the message
         for($i = 0; $i < count($structure->parts); $i++) {
         
         
-   
+   	    //an array to store some information about the attachments found
             $attachments[$i] = array(
                 'is_attachment' => false,
                 'filename' => '',
@@ -124,8 +125,11 @@ function extract_attachments($connection, $message_number) {
                 'attachment' => ''
             );
            
+           
+           //if the part contains an attachment
             if($structure->parts[$i]->ifdparameters) {
                 foreach($structure->parts[$i]->dparameters as $object) {
+                	//check_object_for_filename($object);
                     if(strtolower($object->attribute) == 'filename') {
                         $attachments[$i]['is_attachment'] = true;
                         $attachments[$i]['filename'] = $object->value;
@@ -152,10 +156,11 @@ function extract_attachments($connection, $message_number) {
                 }
             }
             
-            //added by brendan to detect deeper sub parts
+            //depending on the authoring environment of the message, attachments may be present in a sub part
+            //of the content, if this is present, check it for the presence of params and dump to the previous
+            //attachment array
             if($structure->parts[$i]->parts) {
-            	//print "THIS MESSSAGE HAS SUB PARTS";
-            	/////////////////////////////////add the children in too
+            	
             	$substructure = $structure->parts[$i];
             	
             	
