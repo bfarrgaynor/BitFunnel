@@ -1,0 +1,1 @@
+Bit Funnel is a script which will pull attachments from e-mails via IMAP and store them in a target folder directory. Right now it is a crude proof of concept but I hope to break things down into component parts and eliminate the repitition. The goal being to have it be a mail-client proxy which will automatically put incoming mail in target folders no matter the system.
