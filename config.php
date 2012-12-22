@@ -13,6 +13,11 @@ $config['account'][0]['server']['host'] = "imap.gmail.com"; //eg. imap.gmail.com
 //PORT - optional TCP port number, default is the default port for that service
 $config['account'][0]['server']['port'] = "993"; //eg IMAP SSL (Gmail Default) 
 
+//USERNAME - your account name
+$config['account'][0]['server']['user'] = "";
+
+//PASSWORD - your account password
+$config['account'][0]['server']['password'] = "";
 
 /*
 FLAGS - optional flags, see following table.
@@ -43,4 +48,4 @@ $config['account'][0]['server']['mailbox'] = "INBOX"; // eg. INBOX (Gmail Defaul
 
 
 //SAVEPATH - where to save attachments on the local server
-$config['account'][0]['savePath'] = "/var/www/html/attachments/";
+$config['account'][0]['savePath'] = "attachments/";
