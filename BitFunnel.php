@@ -98,7 +98,7 @@ class BitFunnel {
 	/*
 		Take the e-mails and process them
 	*/
-	private processMailBatchBatch() {
+	private processMailBatch() {
 		
 		
 		
