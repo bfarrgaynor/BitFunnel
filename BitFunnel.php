@@ -3,10 +3,10 @@
 class BitFunnel {
 	
 	public $errors; 
-	protected $server;
-	protected $connection;
-	protected $emails;
-	protected $attachments;
+	private $server;
+	private $connection;
+	private $emails;
+	public $attachments;
 	
 	function __construct($account) {
 		
