@@ -5,8 +5,8 @@ class BitFunnel {
 	public $errors; 
 	protected $server;
 	protected $connection;
-	protected $this->emails;
-	protected $this->attachments;
+	protected $emails;
+	protected $attachments;
 	
 	function __construct($account) {
 		
