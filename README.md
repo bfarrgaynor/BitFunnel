@@ -17,19 +17,19 @@ Simply set the configuration file with the details for your account and path to 
 
 require("BitFunnel.php");
 
-$config = array();
-
-$config['account'][0]['server']['host'] = "imap.gmail.com"; //eg. imap.gmail.com
-$config['account'][0]['server']['port'] = "993"; //eg IMAP SSL (Gmail Default) 
-$config['account'][0]['server']['user'] = "foo";
-$config['account'][0]['server']['password'] = "bar";
-$config['account'][0]['server']['flags'][] = "imap"; //Gmail defaults 
-$config['account'][0]['server']['flags'][] = "ssl"; //Gmail defaults
-$config['account'][0]['server']['mailbox'] = "INBOX"; // eg. INBOX (Gmail Default)
-$config['account'][0]['savePath'] = "attachments/";
-
-
-$myAccount = $config['account'][0];
+$myAccount = array(
+	'account' => array(
+		 'server' => array(
+			  'host' => 'imap.gmail.com'
+			, 'port' => '993'
+		    , 'user' => 'youruser'
+		    , 'password' => 'swordfish'
+		    , 'flags' => array('imap', 'ssl')
+		    , 'mailbox' => "INBOX"
+		)
+	   , 'savepath' => 'attachments/'
+	)
+);
 
 //grab the attachments
 $bitFunnel = new BitFunnel($myAccount);

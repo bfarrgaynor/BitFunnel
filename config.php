@@ -4,22 +4,17 @@
 
 config.php - Sets an array with connection details for your remote IMAP server.
 
-*/
+
+HOST - Internet domain name or bracketed IP address of server.
+
+PORT - optional TCP port number, default is the default port for that service
+
+USER - your account name
 
 
-//HOST - Internet domain name or bracketed IP address of server.
-$config['account'][0]['server']['host'] = "imap.gmail.com"; //eg. imap.gmail.com
+PASSWORD - your account password
 
-//PORT - optional TCP port number, default is the default port for that service
-$config['account'][0]['server']['port'] = "993"; //eg IMAP SSL (Gmail Default) 
 
-//USERNAME - your account name
-$config['account'][0]['server']['user'] = "";
-
-//PASSWORD - your account password
-$config['account'][0]['server']['password'] = "";
-
-/*
 FLAGS - optional flags, see following table.
 
 /service=service	mailbox access service, default is "imap"
@@ -38,14 +33,29 @@ FLAGS - optional flags, see following table.
 /tls	force use of start-TLS to encrypt the session, and reject connection to servers that do not support it
 /notls	do not do start-TLS to encrypt the session, even with servers that support it
 /readonly	request read-only mailbox open (IMAP only; ignored on NNTP, and an error with SMTP and POP3)
+
+
+
+
+MAILBOX - remote mailbox name, default is INBOX
+
+
+SAVEPATH - where to save attachments on the local server
+
+
 */
 
-$config['account'][0]['server']['flags'][] = "imap"; //Gmail defaults 
-$config['account'][0]['server']['flags'][] = "ssl"; //Gmail defaults
+return array(
+	'account' => array(
+		 'server' => array(
+			  'host' => 'imap.gmail.com'
+			, 'port' => '993'
+		    , 'user' => 'youruser'
+		    , 'password' => 'swordfish'
+		    , 'flags' => array('imap', 'ssl')
+		    , 'mailbox' => "INBOX"
+		)
+	   , 'savepath' => 'attachments/'
+	)
+);
 
-//MAILBOX - remote mailbox name, default is INBOX
-$config['account'][0]['server']['mailbox'] = "INBOX"; // eg. INBOX (Gmail Default)
-
-
-//SAVEPATH - where to save attachments on the local server
-$config['account'][0]['savePath'] = "attachments/";
